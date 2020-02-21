@@ -1,21 +1,13 @@
-from selenium import webdriver
 import time
-from selenium.webdriver.common.by import By
-from culc_function import calc, print_code, solve_the_task
+from helpful_functions import connect_website, quit_connection, find_element, print_code, solve_the_task, accept_allert
 
-browser = webdriver.Chrome()
-
+browser = connect_website("http://suninjuly.github.io/alert_accept.html")
 try:
-    link = "http://suninjuly.github.io/alert_accept.html"
-    browser.get(link)
-
-    button_first = browser.find_element(By.CSS_SELECTOR, ".btn-primary")
-    button_first.click()
+    find_element(browser, '.btn-primary').click()
 
     time.sleep(1)
 
-    confirm = browser.switch_to.alert
-    confirm.accept()
+    accept_allert(browser)
 
     time.sleep(1)
 
@@ -24,5 +16,4 @@ try:
     print_code(browser)
 
 finally:
-    # time.sleep(3)
-    browser.quit()
+    quit_connection(browser)
